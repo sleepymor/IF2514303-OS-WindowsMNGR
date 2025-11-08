@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.10.30)  8 NOV 2025 12:14
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.10.30)  8 NOV 2025 12:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -298,7 +298,24 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ]
 
-[2] (WindowsManagement.aux)
+[2]
+Overfull \hbox (2.61722pt too wide) in paragraph at lines 49--51
+\TU/TimesNewRoman(0)/m/n/12 Manajemen \TU/TimesNewRoman(0)/m/it/12 storage \TU/
+TimesNewRoman(0)/m/n/12 berfungsi untuk mengatur penyimpanan data jangka panjan
+g di media seperti
+ []
+
+
+Overfull \hbox (3.33011pt too wide) in paragraph at lines 67--68
+[]\TU/TimesNewRoman(0)/b/n/12 Buffering & Spooling \TU/TimesNewRoman(0)/m/n/12 
+berfungsi menyimpan sementara data sebelum dikirim ke perangkat
+ []
+
+
+
+[3]
+
+[4] (WindowsManagement.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-09>
@@ -307,10 +324,10 @@ L3 programming layer <2025-10-09>
 Here is how much of TeX's memory you used:
  4285 strings out of 403196
  117611 string characters out of 5454884
- 562660 words of memory out of 5000000
+ 564660 words of memory out of 5000000
  32770 multiletter control sequences out of 15000+600000
  628802 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,6n,93p,308b,247s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,6n,93p,678b,247s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on WindowsManagement.pdf (2 pages).
+Output written on WindowsManagement.pdf (4 pages).

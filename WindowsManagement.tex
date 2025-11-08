@@ -28,36 +28,55 @@ Windows menerapkan konsep \textit{multitasking preemptive}, yang berarti CPU dap
 
 Adapun beberapa komponen penting pada manajemen proses adalah sebagai berikut:
 \begin{itemize}
-    \item \textbf{Process Control Block (PCB)}  Berfungsi untuk menyimpan informasi penting seperti \textit{Process ID, Process State, CPU Contex, Memory Management, Scheduling Information, I/O Infromation, Security Info}.
-    \item \textbf{Windows Task Manager}  Alat yang digunakan untuk memantau dan mengelola proses yang sedang berjalan. Melalui \textit{Task Manager user} dapat memantau kinerja sistem secara \textit{Realtime}, termasuk
-    \textit{CPU Usage, RAM usage, Storage Activity, Network Activity,} serta status dari masing-masing proses. \textit{User} juga bisa mengakhiri dan mengatur prioritas proses.
-    \item \textbf{Windows Service}  berfungsi sebagai kumpulan proses \textit{background} 
-    yang berjalan tanpa antarmuka pengguna (\textit{non-interactive}). 
-    Contohnya termasuk \textit{Windows Update Service, Print Spooler,} dan \textit{Windows Defender Service}. 
-    Layanan-layanan ini dikelola oleh \textit{Service Control Manager} (SCM), yang bertanggung jawab untuk memulai, menghentikan, atau mengonfigurasi \textit{service} sesuai kebutuhan sistem. 
-    Mereka sering berjalan dengan hak akses tinggi (\textit{system-level privileges}) agar bisa mengakses komponen kernel atau \textit{hardware}.
+    \item \textbf{Process Control Block (PCB)} berfungsi untuk menyimpan informasi penting seperti \textit{Process ID, Process State, CPU Context, Memory Management, Scheduling Information, I/O Information,} dan \textit{Security Info}. PCB memastikan sistem dapat melakukan \textit{context switching} dengan cepat tanpa kehilangan status proses yang sedang berjalan.
+    \item \textbf{Windows Task Manager} adalah alat yang digunakan untuk memantau dan mengelola proses yang sedang berjalan. Melalui \textit{Task Manager}, pengguna dapat memantau kinerja sistem secara \textit{realtime}, termasuk \textit{CPU Usage, RAM Usage, Storage Activity, Network Activity}, serta status dari masing-masing proses. \textit{User} juga dapat mengakhiri proses, mengatur prioritas, dan memantau performa sistem secara keseluruhan.
+    \item \textbf{Windows Service} berfungsi sebagai kumpulan proses \textit{background} yang berjalan tanpa antarmuka pengguna (\textit{non-interactive}). Contohnya termasuk \textit{Windows Update Service, Print Spooler,} dan \textit{Windows Defender Service}. Layanan-layanan ini dikelola oleh \textit{Service Control Manager} (SCM), yang bertanggung jawab untuk memulai, menghentikan, atau mengonfigurasi \textit{service} sesuai kebutuhan sistem. Mereka sering berjalan dengan hak akses tinggi (\textit{system-level privileges}) agar dapat mengakses komponen kernel atau \textit{hardware}.
 \end{itemize}
 
 \section{Manajemen Memori}
-Manajemen memori dalam sistem operasi Windows memiliki tugas untuk 
-mengalokasikan dan mengatur ruang memori untuk proses agar tidak saling bertabrakan.
-Dalam penerapannya Windows menggunakan \textit{Virtual Memory System} yang memetakan \textit{Physical Memory} (RAM) dan \textit{Virtual Memory} di \textit{page file}
+Manajemen memori dalam sistem operasi Windows memiliki tugas untuk mengalokasikan dan mengatur ruang memori untuk proses agar tidak saling bertabrakan.
+Dalam penerapannya, Windows menggunakan \textit{Virtual Memory System} yang memetakan \textit{Physical Memory} (RAM) dan \textit{Virtual Memory} di \textit{page file}.
 
-adapun Mekanisme yang digunakan oleh Windows untuk melakukan manajemen memori yaitu:
+Adapun mekanisme yang digunakan oleh Windows untuk melakukan manajemen memori yaitu:
 \begin{itemize}
-    \item \textbf{Paging} yaitu proses memecah memori menjadi blok-blok kecil yang 
-    disebut \textit{pages}. Sistem operasi kemudian memetakan halaman-halaman ini ke alamat 
-    virtual, sehingga aplikasi dapat menggunakan lebih banyak memori daripada yang 
-    tersedia secara fisik di RAM. Dengan \textit{virtual memory}, Windows mampu menjaga agar 
-    sistem tetap responsif bahkan saat banyak aplikasi berjalan bersamaan.
-    \item \textbf{Page File}
-    \item \textbf{Memory Protection}
-    \item \textbf{Dynamic Link Library (DLL) Sharing}
+    \item \textbf{Paging} adalah proses memecah memori menjadi blok-blok kecil yang disebut \textit{pages}. Sistem operasi kemudian memetakan halaman-halaman ini ke alamat virtual, sehingga aplikasi dapat menggunakan lebih banyak memori daripada yang tersedia secara fisik di RAM. Dengan \textit{virtual memory}, Windows mampu menjaga agar sistem tetap responsif bahkan saat banyak aplikasi berjalan bersamaan.
+    \item \textbf{Page File} digunakan ketika kapasitas RAM sudah tidak mencukupi. Windows menggunakan \textit{Page File (pagefile.sys)} sebagai ekstensi dari memori fisik. File ini terletak di \textit{hard drive} atau SSD dan berfungsi menyimpan data dari halaman memori yang tidak sedang aktif digunakan. Proses ini disebut \textit{swapping}, dan memungkinkan sistem untuk meminjam ruang penyimpanan agar tidak kehabisan memori. Meskipun akses ke disk lebih lambat dibanding RAM, mekanisme ini mencegah aplikasi \textit{crash} karena kekurangan memori.
+    \item \textbf{Memory Protection} adalah sistem keamanan yang memastikan setiap proses hanya dapat mengakses ruang memorinya sendiri. Jika suatu proses mencoba membaca atau menulis ke memori milik proses lain, maka \textit{Memory Management Unit} (MMU) akan mencegahnya, dan sistem dapat menghasilkan \textit{error} seperti \textit{Access Violation}. Mekanisme ini penting untuk mencegah kerusakan data dan menjaga stabilitas sistem.
+    \item \textbf{Dynamic Link Library (DLL) Sharing} membuat Windows lebih efisien dalam penggunaan memori. DLL memungkinkan beberapa aplikasi menggunakan kode atau fungsi yang sama tanpa perlu memuat salinan terpisah di memori masing-masing. Dengan begitu, sistem dapat menghemat RAM, mempercepat waktu \textit{loading} aplikasi, dan memudahkan pembaruan fungsi karena cukup memperbarui satu file DLL saja.
 \end{itemize}
+
 \section{Manajemen Storage}
+Manajemen \textit{storage} berfungsi untuk mengatur penyimpanan data jangka panjang di media seperti \textit{Hard Disk Drive (HDD)} atau \textit{Solid State Drive (SSD)}. 
+Windows menggunakan sistem file \textbf{NTFS (New Technology File System)} untuk mengelola file, direktori, serta metadata yang terkait.
+
+Adapun fitur utama dalam NTFS antara lain:
+\begin{itemize}
+    \item \textbf{File Permission \& Encryption (EFS)} menjaga keamanan file dengan memberikan hak akses spesifik kepada pengguna tertentu dan mengenkripsi file agar tidak mudah dibuka oleh pihak yang tidak berwenang.
+    \item \textbf{Journaling} berfungsi untuk mencegah kehilangan data saat sistem tiba-tiba mati atau mengalami \textit{crash}. NTFS menyimpan catatan (\textit{journal}) perubahan yang akan dilakukan, sehingga jika terjadi kegagalan, sistem dapat memulihkan struktur file dari log tersebut.
+    \item \textbf{Compression \& Quota} membantu menghemat ruang penyimpanan dengan melakukan kompresi file, serta memberikan batasan (\textit{quota}) terhadap penggunaan disk oleh pengguna tertentu agar kapasitas penyimpanan dapat terkontrol.
+\end{itemize}
 
 \section{Manajemen I/O}
+Manajemen \textit{Input/Output (I/O)} bertugas menangani interaksi antara perangkat keras seperti \textit{keyboard, mouse, printer, display, storage device} dan sistem operasi. 
+Windows menggunakan \textbf{I/O Manager} yang berada di dalam kernel untuk mengatur aliran data antara perangkat dan sistem.
+
+Adapun mekanisme utama pada manajemen I/O di Windows yaitu:
+\begin{itemize}
+    \item \textbf{Device Driver} adalah modul perangkat lunak yang menerjemahkan perintah sistem operasi ke dalam bahasa yang dimengerti oleh perangkat keras. Setiap jenis perangkat memiliki \textit{driver} tersendiri agar dapat berkomunikasi dengan sistem.
+    \item \textbf{Plug and Play (PnP)} memungkinkan Windows untuk secara otomatis mengenali, mengonfigurasi, dan menginstal driver saat perangkat baru terhubung ke sistem tanpa memerlukan intervensi pengguna.
+    \item \textbf{Buffering \& Spooling} berfungsi menyimpan sementara data sebelum dikirim ke perangkat I/O seperti printer atau disk. Teknik ini membantu meningkatkan efisiensi dan menghindari penundaan dalam proses input/output.
+\end{itemize}
 
 \section{Manajemen Keamanan}
+Manajemen keamanan bertugas melindungi sistem operasi dan data pengguna dari akses tidak sah serta ancaman keamanan lainnya. 
+Windows memiliki \textbf{Windows Security Architecture} yang mencakup proses \textit{authentication}, \textit{authorization}, dan \textit{auditing} untuk menjaga integritas sistem.
+
+Fitur utama dalam manajemen keamanan Windows antara lain:
+\begin{itemize}
+    \item \textbf{User Account Control (UAC)} mencegah perubahan sistem tanpa izin administrator dengan meminta konfirmasi setiap kali program mencoba melakukan modifikasi tingkat sistem.
+    \item \textbf{Windows Defender / SmartScreen} berfungsi melindungi sistem dari \textit{malware, spyware, phishing}, dan file berbahaya lainnya secara real-time.
+    \item \textbf{NTFS Permission} memberikan kontrol akses terhadap file dan folder, menentukan siapa yang memiliki hak untuk membaca, menulis, atau menghapus file.
+    \item \textbf{Encryption (BitLocker)} mengamankan seluruh drive dengan enkripsi penuh, memastikan data tetap terlindungi bahkan jika perangkat dicuri atau hilang.
+\end{itemize}
 
 \end{document}
