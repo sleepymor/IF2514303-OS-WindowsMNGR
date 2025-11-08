@@ -7,33 +7,57 @@
 
 \setmainfont{Times New Roman}
 
-% === STYLE ===
+% === STYLE SETTINGS ===
 \setstretch{1.5}
 \titleformat{\section}{\bfseries\large}{\thesection.}{0.5em}{}
 
 % === TITLE INFO ===
-\title{\textbf{Analisis Manajemen Sistem Pada Sistem Operasi Windows}}
+\title{\textbf{Analisis Manajemen Sistem pada Sistem Operasi Windows}}
+\author{Muhamad Rizal -- 11241049 \\ 
+Mata Kuliah: IF2514303 -- Sistem Operasi}
+\date{}
 
-\author{Muhamad Rizal - 11241049 \\
-Mata Kuliah: IF2514303 - Sistem Operasi}
 \begin{document}
 
 \maketitle
 
 \section{Manajemen Proses}
-Pada sistem operasi Windows manajemen proses bertugas untuk mengatur pembuatan, penjadwalan, dan penghentian proses\@. Windows menggunakan Windows Scheduler untuk menentukan proses mana yang di jalankan oleh CPU\@. 
-Windows menggunakan multitasking preemptive, yang berarti CPU dapat mengganti proses sebelum prosses yang sedang di jalankan selesai, agar sistem terasa lebih responsif.
+Pada sistem operasi Windows, manajemen proses bertugas untuk mengatur pembuatan, penjadwalan, dan penghentian proses. 
+Windows menggunakan \textit{Windows Scheduler} untuk menentukan proses mana yang dijalankan oleh CPU. 
+Windows menerapkan konsep \textit{multitasking preemptive}, yang berarti CPU dapat mengganti proses sebelum proses yang sedang dijalankan selesai agar sistem terasa lebih responsif.
 
-Adapun beberapa komponen penting yaitu:
-    \begin{description}
-        \item[Process Control Block]
-        \item[Windows Task Manager]
-        \item[Windows Service]   
-    \end{description}
+Adapun beberapa komponen penting pada manajemen proses adalah sebagai berikut:
+\begin{itemize}
+    \item \textbf{Process Control Block (PCB)}  Berfungsi untuk menyimpan informasi penting seperti \textit{Process ID, Process State, CPU Contex, Memory Management, Scheduling Information, I/O Infromation, Security Info}.
+    \item \textbf{Windows Task Manager}  Alat yang digunakan untuk memantau dan mengelola proses yang sedang berjalan. Melalui \textit{Task Manager user} dapat memantau kinerja sistem secara \textit{Realtime}, termasuk
+    \textit{CPU Usage, RAM usage, Storage Activity, Network Activity,} serta status dari masing-masing proses. \textit{User} juga bisa mengakhiri dan mengatur prioritas proses.
+    \item \textbf{Windows Service}  berfungsi sebagai kumpulan proses \textit{background} 
+    yang berjalan tanpa antarmuka pengguna (\textit{non-interactive}). 
+    Contohnya termasuk \textit{Windows Update Service, Print Spooler,} dan \textit{Windows Defender Service}. 
+    Layanan-layanan ini dikelola oleh \textit{Service Control Manager} (SCM), yang bertanggung jawab untuk memulai, menghentikan, atau mengonfigurasi \textit{service} sesuai kebutuhan sistem. 
+    Mereka sering berjalan dengan hak akses tinggi (\textit{system-level privileges}) agar bisa mengakses komponen kernel atau \textit{hardware}.
+\end{itemize}
+
 \section{Manajemen Memori}
-\section{Manajemen Storage}
-\section{Manajemen I/O}
-\section{Manajemen Keamanan}
+Manajemen memori dalam sistem operasi Windows memiliki tugas untuk 
+mengalokasikan dan mengatur ruang memori untuk proses agar tidak saling bertabrakan.
+Dalam penerapannya Windows menggunakan \textit{Virtual Memory System} yang memetakan \textit{Physical Memory} (RAM) dan \textit{Virtual Memory} di \textit{page file}
 
+adapun Mekanisme yang digunakan oleh Windows untuk melakukan manajemen memori yaitu:
+\begin{itemize}
+    \item \textbf{Paging} yaitu proses memecah memori menjadi blok-blok kecil yang 
+    disebut \textit{pages}. Sistem operasi kemudian memetakan halaman-halaman ini ke alamat 
+    virtual, sehingga aplikasi dapat menggunakan lebih banyak memori daripada yang 
+    tersedia secara fisik di RAM. Dengan \textit{virtual memory}, Windows mampu menjaga agar 
+    sistem tetap responsif bahkan saat banyak aplikasi berjalan bersamaan.
+    \item \textbf{Page File}
+    \item \textbf{Memory Protection}
+    \item \textbf{Dynamic Link Library (DLL) Sharing}
+\end{itemize}
+\section{Manajemen Storage}
+
+\section{Manajemen I/O}
+
+\section{Manajemen Keamanan}
 
 \end{document}
